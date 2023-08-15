@@ -1,0 +1,61 @@
+import boto3
+from datetime import datetime, timedelta
+
+def send_email(subject, body, recipient):
+    ses_client = boto3.client('ses', region_name='us-east-1')  # Replace with your desired region
+    sender_email = "abc@xyz.com"  # Replace with your verified sender email
+
+    response = ses_client.send_email(
+        Source=sender_email,
+        Destination={'ToAddresses': [recipient]},
+        Message={
+            'Subject': {'Data': subject},
+            'Body': {'Text': {'Data': body}}
+        }
+    )
+    return response
+
+def lambda_handler(event, context):
+    iam_client = boto3.client('iam')
+
+    today = datetime.now()
+    max_key_age = timedelta(days=5)
+
+    users_to_rotate_keys = []
+
+    user_list = iam_client.list_users(MaxItems=1000)['Users']  # Adjust MaxItems as needed
+
+    for user in user_list:
+        username = user['UserName']
+        print(f"Processing user: {username}")
+
+        access_keys = iam_client.list_access_keys(UserName=username)['AccessKeyMetadata']
+
+        for key in access_keys:
+            key_created_date = key['CreateDate']
+            age_in_days = (today - key_created_date.replace(tzinfo=None)).days
+
+            if age_in_days > max_key_age.days:
+                users_to_rotate_keys.append(username)
+                break  # If any access key is older than 10 days, break and move to the next user
+
+    if users_to_rotate_keys:
+        email_subject = "AWS Access Key Rotation Required"
+        email_body = "Dear Administrator,\n\nThe following IAM users have access keys that are older than 05 days and need to be rotated:\n\n"
+
+        for user in users_to_rotate_keys:
+            email_body += f"- {user}\n"
+
+        email_body += "\nPlease take necessary actions to rotate the keys and ensure the security of the AWS environment.\n\nThank you."
+        recipient_email = "abc@xyz.com"  # Replace with the email address to receive the notification
+        send_email(email_subject, email_body, recipient_email)
+        print(f"Email sent successfully to {recipient_email}")
+
+    response = {
+        'statusCode': 200,
+        'body': {
+            'users_to_rotate_keys': users_to_rotate_keys
+        }
+    }
+
+    return response
