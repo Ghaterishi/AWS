@@ -1,5 +1,8 @@
 # Deploying Node-app On AWS ECS Farget.
 
+<img width="503" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/bf269b22-cd81-4adb-bcec-bebf0f001a48">
+
+
 ## Overview:
 We can easily deploy application on ECS farget and access that using ECS task PublicIp, but thats not good practice here you compromise your securtiy as there is no additional layer of security. End user can directly hitting/sending their request to ecs tasks.
 Secondly you think lets deploy ECS Task in private subnet, thats a good idea and many apps use the same infrastructure, But DOnt you think their is still some security compriese or loopholes. let me explain, if you want to host your ECS Task in private subnet you need NAT Gateway to pull the images from ECR or anyother work which required internet otherwise you cant access the app..right? Here also internet is accessible from inside the Private subnet and where there is a internet access its not fully secure.
