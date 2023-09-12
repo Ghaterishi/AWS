@@ -21,18 +21,23 @@ There are two types of endpoint,
   These endpoints are used to connect your VPC to AWS services that are outside of your VPC by creating an Elastic Network Interface (ENI) in your VPC. Most of aws services supports this endpoint.
 
  ## lets create the infrastructure and deploy the app.
+ 
   ### Step-01: Build Docker image
    First fork the below repo and build a docker image.
    
   GitHub repo-[https://github.com/Ghaterishi/node-todo-cicd]
+  
 <img width="785" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/d9590388-3dc8-4001-a24a-bf460206b2f3">
 
   ### Step-02: Create one Private ECR registry and push image in it.
-  Login to your AWS account and Search ECR, then you you will land on ECR homepage, then click on repositories option on left sidre panel and create one private registry. 
+  
+   Login to your AWS account and Search ECR, then you you will land on ECR homepage, then click on repositories option on left sidre panel and create one private registry.
+   
   <img width="935" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/0ba33f1b-bc63-44c3-827e-e742405c5eb7">
 
-After this click on checkbox mention left side of repo name and click on view push command, follow the instruction and push docker which we build in step-01 into the ECR.
-<img width="556" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/fa5246b3-0e04-4f28-a4e7-8c721ac3bfa1">
+  After this click on checkbox mention left side of repo name and click on view push command, follow the instruction and push docker which we build in step-01 into the ECR.
+  
+  <img width="556" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/fa5246b3-0e04-4f28-a4e7-8c721ac3bfa1">
 
 ### Step-03: Setup the VPC
  Create two AZs, 2 public subnet, 2 private subnet and in NAT gatewat select none, we dont need NAT gateway.
@@ -57,11 +62,13 @@ Following same procedure as mentioned above cretate two more endpoint
 - **com.amazonaws.us-east-1.ecr.logs**
 
 ### Step-05: Create a cluster and Task defination
+
 Go to the ECS homepage and create  cluster, while creating cluster choose launch type as Farget. After creating cluster create a task defination, while creating cluste filled the mandtory details like family name,CPU, memory, launch type, container port and in image URI specify the uri image that we push in ECR.
 
 <img width="765" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/487a79d0-072f-42c5-b836-1071f2818837">
 
 ### Step-06: Create a Load Balancer and Target Group:
+
 First create a target group choose target type as ip address and configure the remaining deatails, then create application load balancer with lister http 80 and forward that traffic to created target group.
 while creating load balancer choose VPC and public subnet which we are already created,
 
@@ -70,6 +77,7 @@ while creating load balancer choose VPC and public subnet which we are already c
 <img width="627" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/7fb98e26-966e-4a1b-8f65-6620caee5e01">
 
 ### Step-07: Create a ECS service and attach load balancer to it.
+
 Open the ECS homepage and click cluster created in Step-05 , scroll up and click on create service, fill the details
 
 <img width="745" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/3497dcee-95f1-4412-89e9-c0280b4fc2a8">
@@ -87,11 +95,13 @@ Open load balancing section and attach previously created load balancer and targ
 <img width="485" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/fd816ae1-1721-4017-a645-1ed52eb0d409">
 
 ### Step-08: Access the app
+
 It will take around 10 min to create service and then click on service name, go to the networking section and copy the load balancer DNS and paste it in the browser and boom..!
 
 <img width="944" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/d5dfb5e2-1d61-4806-94ba-2755f8e18817">
 
 ## Conclusion:
+
 This is the tough one. i encourged you to try this own your own then you will end up this lots more errors try to troubleshoot them. As you troubleshoot errors you will learn alot.
 
 **Thanks for reading happy learning**
