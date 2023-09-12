@@ -1,4 +1,4 @@
-📌# Deploying Node-app On AWS ECS Farget.📌
+# Deploying Node-app On AWS ECS Farget.
 
 ## Overview:
 We can easily deploy application on ECS farget and access that using ECS task PublicIp, but thats not good practice here you compromise your securtiy as there is no additional layer of security. End user can directly hitting/sending their request to ecs tasks.
