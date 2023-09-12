@@ -28,12 +28,10 @@ There are two types of endpoint,
 <img width="785" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/d9590388-3dc8-4001-a24a-bf460206b2f3">
 
   ### Step-02: Create one Private ECR registry and push image in it.
-  Login to your AWS account and Search ECR, then you you will land on ECR homepage, then click on repositories option on left sidre panel and create one private registry.
-  
+  Login to your AWS account and Search ECR, then you you will land on ECR homepage, then click on repositories option on left sidre panel and create one private registry. 
   <img width="935" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/0ba33f1b-bc63-44c3-827e-e742405c5eb7">
 
 After this click on checkbox mention left side of repo name and click on view push command, follow the instruction and push docker which we build in step-01 into the ECR.
-
 <img width="556" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/fa5246b3-0e04-4f28-a4e7-8c721ac3bfa1">
 
 ### Step-03: Setup the VPC
