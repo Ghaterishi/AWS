@@ -77,6 +77,7 @@ Go to the ECS homepage and create  cluster, while creating cluster choose launch
 ### Step-06: Create a Load Balancer and Target Group:
 
 First create a target group choose target type as ip address and configure the remaining deatails, then create application load balancer with lister http 80 and forward that traffic to created target group.
+
 while creating load balancer choose VPC and public subnet which we are already created,
 <img width="624" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/d7a923c2-2954-4e5e-8506-505598abd97d">
 
