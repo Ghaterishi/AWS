@@ -81,6 +81,10 @@ while creating load balancer choose VPC and public subnet which we are already c
 
 <img width="624" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/d7a923c2-2954-4e5e-8506-505598abd97d">
 
+
+
+
+
 <img width="627" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/7fb98e26-966e-4a1b-8f65-6620caee5e01">
 
 
