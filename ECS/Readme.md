@@ -1,3 +1,5 @@
+A walkthrough of deploying a Node app to ECS with GitHub Actions, with screenshots. Don’t imply runnable code is in the repo.
+
 # Deploying Node-app On AWS ECS Farget.
 
 <img width="503" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/bf269b22-cd81-4adb-bcec-bebf0f001a48">
@@ -29,7 +31,6 @@ There are two types of endpoint,
   ### Step-01: Build Docker image
    First fork the below repo and build a docker image.
    
-  GitHub repo-[https://github.com/Ghaterishi/node-todo-cicd]
   
 <img width="785" alt="image" src="https://github.com/Ghaterishi/AWS/assets/92510442/d9590388-3dc8-4001-a24a-bf460206b2f3">
 
